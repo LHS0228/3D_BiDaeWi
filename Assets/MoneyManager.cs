@@ -71,6 +71,7 @@ public class MoneyManager : MonoBehaviour
 
     public void GetMoneyUpdate()
     {
-
+        clickMoney = Mathf.RoundToInt(UpgradeManager.instance.GetComputerMoney());
+        secondMoney = Mathf.RoundToInt(UpgradeManager.instance.GetAirconMoney());
     }
 }
