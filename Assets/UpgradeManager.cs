@@ -28,35 +28,36 @@ public class UpgradeManager : MonoBehaviour
     }
 
     //돈 획득 배율 관련
-    public int ChairMoneyGet()
+    public float ChairMoneyGet()
     {
-        //이거는 초 당
-        return (int)(chairFisrtConst + (chairFisrtConst * (chairFisrtConst * 0.5f)));
+        //이거는 초 당 획득
+        return chairFisrtConst + (chairFisrtConst * (chairFisrtConst * 0.5f);
     }
 
-    public int AirconMoneyGet()
+    public float AirconMoneyGet()
     {
-        return (int)(airconFisrtConst);
+
+        return airconLevel * (int)(airconFisrtConst);
     }
 
-    public int ComputerMoneyGet()
+    public float ComputerMoneyGet()
     {
         return 0;
     }
 
     //코스트 소비 배율 관련
-    public int AirconConstGet()
+    public float AirconConstGet()
     {
-        return 0;
+        return airconFisrtConst + (airconFisrtConst * (0.2f * airconLevel));
     }
 
-    public int ComputerConstGet()
+    public float ComputerConstGet()
     {
-        return 0;
+        return computerFisrtConst + (computerFisrtConst * (0.2f * computerLevel));
     }
 
-    public int ChairConstGet()
+    public float ChairConstGet()
     {
-        return 0;
+        return chairFisrtConst + (chairFisrtConst * (0.2f * chairLevel));
     }
 }
