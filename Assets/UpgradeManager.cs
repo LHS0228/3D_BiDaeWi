@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,10 +35,10 @@ public class UpgradeManager : MonoBehaviour
         return chairFisrtConst + (chairFisrtConst * (chairFisrtConst * 0.5f);
     }
 
-    public float AirconMoneyGet()
+    public float AirconMoneyGet()// 레벨 x ( 0.5 * 클릭시 획득 골드)
     {
 
-        return airconLevel * (int)(airconFisrtConst);
+        return airconLevel * (int)( 0.5 * MoneyManager.instance.clickMoney);
     }
 
     public float ComputerMoneyGet()
@@ -48,16 +49,16 @@ public class UpgradeManager : MonoBehaviour
     //코스트 소비 배율 관련
     public float AirconConstGet()
     {
-        return airconFisrtConst + (airconFisrtConst * (0.2f * airconLevel));
+        return airconFisrtConst * (int) Math.Pow(1.2f, airconLevel);
     }
 
     public float ComputerConstGet()
     {
-        return computerFisrtConst + (computerFisrtConst * (0.2f * computerLevel));
+        return computerFisrtConst * (int) Math.Pow(1.2f, computerLevel);
     }
 
     public float ChairConstGet()
     {
-        return chairFisrtConst + (chairFisrtConst * (0.2f * chairLevel));
+        return chairFisrtConst * (int)Math.Pow(1.2f, chairLevel);
     }
 }
