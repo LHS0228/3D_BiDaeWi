@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -46,6 +46,7 @@ public class MoneyManager : MonoBehaviour
         if (!GameManager.instance.isGameStop)
         {
             SecondOfMoneyPlus();
+            GetMoneyUpdate();
         }
     }
 
@@ -68,4 +69,8 @@ public class MoneyManager : MonoBehaviour
         secondMoneyText.text = secondMoney + " / second";
     }
 
+    public void GetMoneyUpdate()
+    {
+
+    }
 }
