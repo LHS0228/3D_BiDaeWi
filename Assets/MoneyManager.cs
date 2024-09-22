@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,19 +7,19 @@ public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager instance;
 
-    [Header("°¡Áø µ·, Å¬¸¯ ´ç, ÃÊ ´ç")]
+    [Header("ê°€ì§„ ëˆ, í´ë¦­ ë‹¹, ì´ˆ ë‹¹")]
     public int money;
     public int clickMoney = 1;
     public int secondMoney = 0;
 
-    [SerializeField, Header("ÅØ½ºÆ®")]
+    [SerializeField, Header("í…ìŠ¤íŠ¸")]
     private TextMeshProUGUI moneyText;
     [SerializeField]
     private TextMeshProUGUI clickMoneyText;
     [SerializeField]
     private TextMeshProUGUI secondMoneyText;
 
-    //ÃÊ´ç µ· ¹ö´Â º¯¼ö DON'T TOUCH
+    //ì´ˆë‹¹ ëˆ ë²„ëŠ” ë³€ìˆ˜ DON'T TOUCH
     private float secondCountingTime;
 
     // Start is called before the first frame update

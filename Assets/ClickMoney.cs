@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,7 +20,7 @@ public class ClickMoney : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("µ·¹ü");
+        Debug.Log("ëˆë²”");
         MoneyManager.instance.money += MoneyManager.instance.clickMoney;
         MoneyManager.instance.UITextUpdate();
     }
