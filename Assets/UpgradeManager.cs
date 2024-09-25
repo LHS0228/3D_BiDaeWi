@@ -48,7 +48,7 @@ public class UpgradeManager : MonoBehaviour
 
     public float GetComputerMoney()
     {
-        return computerFisrtConst + (computerLevel * 10);
+        return computerFisrtConst + (computerLevel * computerFisrtConst);
     }
 
     //코스트 소비 배율 관련
