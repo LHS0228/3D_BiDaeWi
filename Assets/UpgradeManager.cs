@@ -101,7 +101,7 @@ public class UpgradeManager : MonoBehaviour
     {
         upgardeLevel_Computer_Text.text = "Computer : " + computerLevel;
         upgardeLevel_Aircon_Text.text = "Aircon : " + airconLevel;
-        upgradeCost_Computer_Text.text = GetComputerMoney() + "s / "+ GetComputerConst() + " Cost";
-        upgradeCost_Aircon_Text.text = GetAirconMoney() + "click / " + GetAirconConst() + " Cost";
+        upgradeCost_Computer_Text.text = GetComputerConst() + " Cost";
+        upgradeCost_Aircon_Text.text = GetAirconConst() + " Cost";
     }
 }
