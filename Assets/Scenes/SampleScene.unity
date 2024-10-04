@@ -570,7 +570,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 827595069}
   - {fileID: 202463027}
   - {fileID: 761165865}
   m_Father: {fileID: 0}
@@ -1001,6 +1000,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 890d0efd750425442a601944b2270d85, type: 3}
       propertyPath: m_Name
       value: SubBuding
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 890d0efd750425442a601944b2270d85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3943,6 +3946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43231bf8bf8f52148a8106c64d2ee771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
 --- !u!1001 &345078335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3994,6 +3998,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 100b3aed68f2c2f4b9bb6ce4519c40c2, type: 3}
       propertyPath: m_Name
       value: MainBuilding_Main
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 100b3aed68f2c2f4b9bb6ce4519c40c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 100b3aed68f2c2f4b9bb6ce4519c40c2, type: 3}
       propertyPath: m_Name
@@ -4545,7 +4553,7 @@ GameObject:
   - component: {fileID: 378516160}
   - component: {fileID: 378516159}
   m_Layer: 0
-  m_Name: Hose
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5950,7 +5958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &519420029
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8024,6 +8032,19 @@ MonoBehaviour:
   - {fileID: 577013981}
   - {fileID: 125630388}
   - {fileID: 466921601}
+  robot_parts:
+  - {fileID: 1829779282}
+  - {fileID: 1876304054}
+  - {fileID: 1612479114}
+  - {fileID: 183532130}
+  - {fileID: 1551767224}
+  - {fileID: 1016048981}
+  - {fileID: 232211347}
+  robot: {fileID: 202463026}
+  other_Camera:
+  - {fileID: 519420028}
+  - {fileID: 1305354452}
+  robot_Camera: {fileID: 827595068}
 --- !u!1001 &795821282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8501,6 +8522,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubBuilding_Brown
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01ed195d84f5d6e408b23cb43952380f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -8577,12 +8602,12 @@ GameObject:
   - component: {fileID: 827595071}
   - component: {fileID: 827595070}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Endding_Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &827595069
 Transform:
   m_ObjectHideFlags: 0
@@ -8591,12 +8616,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827595068}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.11840396, z: 0, w: 0.9929655}
-  m_LocalPosition: {x: -205.2, y: 185.8, z: -81.78}
+  m_LocalRotation: {x: -0, y: 0.11840396, z: -0, w: 0.9929655}
+  m_LocalPosition: {x: -189.4, y: 168.5, z: -48.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 72287300}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 13.6, z: 0}
 --- !u!81 &827595070
 AudioListener:
@@ -9042,6 +9067,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 01ed195d84f5d6e408b23cb43952380f, type: 3}
       propertyPath: m_Name
       value: SubBuilding_Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01ed195d84f5d6e408b23cb43952380f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12595,6 +12624,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubBuilding_Purple
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01ed195d84f5d6e408b23cb43952380f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -12693,6 +12726,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 01ed195d84f5d6e408b23cb43952380f, type: 3}
       propertyPath: m_Name
       value: SubBuilding_Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01ed195d84f5d6e408b23cb43952380f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12821,7 +12858,7 @@ GameObject:
   - component: {fileID: 1305354455}
   - component: {fileID: 1305354454}
   m_Layer: 0
-  m_Name: Sub Camera
+  m_Name: 3D_Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12835,12 +12872,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305354452}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.06287754, z: 0, w: 0.9980213}
+  m_LocalRotation: {x: 0, y: -0.06287754, z: -0, w: 0.9980213}
   m_LocalPosition: {x: -150, y: 12.6, z: -13.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2017116352}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -7.21, z: 0}
 --- !u!81 &1305354454
 AudioListener:
@@ -14460,6 +14497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubBuilding_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01ed195d84f5d6e408b23cb43952380f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -15083,7 +15124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1636778576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17271,7 +17312,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1305354453}
   - {fileID: 189736166}
   - {fileID: 765908109}
   - {fileID: 194068192}
@@ -17762,9 +17802,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 278781108}
   - {fileID: 519420032}
+  - {fileID: 1305354453}
+  - {fileID: 827595069}
   - {fileID: 2099326842}
   - {fileID: 72287300}
-  - {fileID: 2017116352}
   - {fileID: 1804052812}
+  - {fileID: 2017116352}
   - {fileID: 1636778579}
   - {fileID: 266128612}
