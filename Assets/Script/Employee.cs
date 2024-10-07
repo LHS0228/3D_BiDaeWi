@@ -2,26 +2,105 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 직원 종족, 공용 한 개씩 랜덤 부여 - 직원 관리 메뉴에서 관리가능
-// 고용버튼을 눌렀을 때 종족, 공용이 부여된 직원 5명을 제시 - 한 명 고용시 나머지 삭제 후 5명 다시 제시
-// 만약 돌리고 싶으면 1000원 주고 5명 제시
-// 직원 재교육: 직원의 스킬 및 수치 랜덤 변경, 종족 특성은 수치만 공용은 수치 + 스킬 종류까지
-// 직원 역량강화: 강화 3회까지
-// 직원 해고: 삭제 시 해당 직원에 투자한 자원 25퍼 회수
+// Employee 클래스는 직원 개인의 정보를 위한 스크립트
 public class Employee
 {
-    public string name; // 이름
-    public string characteristic; // 특성
-    public string race; // 종족
-    public bool ishire;
+    public string Name { get; set; }
+    public string Trait { get; set; }
+    public string Race { get; set; }
+    public bool IsHire { get; set; }
+
+    private List<string> Traits = new List<string>() { "성급한", "느긋한", "아침형 인간", "부엉이", "신속한", "신중한", "협동심" };
+    private List<string> Races = new List<string>() { "인간", "엘프", "오크" };
 
     // 생성자: 이름을 받아서 랜덤 특성을 부여
-    public Employee(string name, string race, string characteristic, bool ishire)
+    public Employee(string name, bool ishire)
     {
-        this.name = name;
-        this.race = race;
-        this.characteristic = characteristic;
-        this.ishire = ishire;
+        this.Name = name;
+        RandomRace();
+        RandomTrait();
+        this.IsHire = ishire;
     }
-    
+
+    private void RandomRace()
+    {
+        int RandomIndex = Random.Range(0, Races.Count);
+        Race = Races[RandomIndex];
+    }
+    private void RandomTrait()
+    {
+        int RandomIndex = Random.Range(0, Traits.Count);
+        Trait = Traits[RandomIndex];
+    }
+    public void Hire()
+    {
+        IsHire = true;
+        ActiveTrait();
+    }
+
+    private void Fire()
+    {
+        IsHire = false;
+        DeActiveTrait();
+    }
+    // 각 특성에 해당하는 직원 고용시 활성화 됨
+    private void ActiveTrait()
+    {
+        switch (Trait)
+        {
+            case "성급한":
+
+                break;
+
+            case "느긋한":
+
+                break;
+            case "아침형 인간":
+
+                break;
+            case "부엉이":
+
+                break;
+            case "신속한":
+
+                break;
+            case "신중한":
+
+                break;
+            case "협동심":
+
+                break;
+
+        }
+    }
+
+    private void DeActiveTrait()
+    {
+        switch (Trait)
+        {
+            case "성급한":
+
+                break;
+
+            case "느긋한":
+
+                break;
+            case "아침형 인간":
+
+                break;
+            case "부엉이":
+
+                break;
+            case "신속한":
+
+                break;
+            case "신중한":
+
+                break;
+            case "협동심":
+
+                break;
+
+        }
+    }
 }

@@ -7,54 +7,59 @@ using DG.Tweening;
 
 public class EmployeeManager : MonoBehaviour
 {
-    public List<Employee> employees = new List<Employee>();
-    private string[] race = { "인간", "엘프", "오크" };
-    private string[] characteristic = {
-            "성급한", "느긋한", "아침형 인간", "부엉이", "신속한", "신중한", "협동심"
-        };
-    private bool ishire = false;
+    public List<Employee> AllEmployees = new List<Employee>();
+    public List<Employee> GetEmployees = new List<Employee>();
+    public List<Employee> IsHireEmployees = new List<Employee>();
 
     private TextMeshProUGUI Employee1;
+    private int MaxHireEmployee = 5;
 
     private void Awake()
     {
         Generation_Employee(10);
-        foreach (Employee employee in employees) // 직원 생성 확인하려고 만든 출력용 함수
-        {
-            Debug.Log(employee.name + "의 특성 : " + employee.characteristic + " 종족 : " + employee.race);
-        }
     }
 
     private void Generation_Employee(int count)
     {
         for (int i = 0; i < count; i++)
         {
-            string RandomRace = race[Random.Range(0, race.Length)];
-            string RandomCharacteristic = characteristic[Random.Range(0, characteristic.Length)];
-            Employee newEmployee = new Employee($"Employee {i + 1}", RandomRace, RandomCharacteristic, ishire);
-            employees.Add(newEmployee);
+            Employee newEmployee = new Employee($"Employee {i + 1}", false);
+            AllEmployees.Add(newEmployee);
+        }
+        // 확인 함수
+        foreach (Employee employee in AllEmployees)
+        {
+            Debug.Log($"Name: {employee.Name}, Race: {employee.Race}, Trait: {employee.Trait}");
         }
     }
-    public List<Employee> GetRandomEmployees(int count)
+    public List<Employee> Get_Random_Employees(int count)
     {
-        // 랜덤 직원 선택할라고 만듬
-        List<Employee> RandomEmployees = new List<Employee>();
-        // 랜덤 직원 중복 선택 방지하기위해 만듬
-        HashSet<int> SelectIndex = new HashSet<int>();
+        List<Employee> getEmployees = new List<Employee>();
 
+        // 랜덤 직원 중복 선택 방지하기위해 만듬
+        HashSet<int> selectIndex = new HashSet<int>();
 
         // 랜덤 직원 선택 수가 count보다 적을 때 그리고 선택가능한 직원이 생성된 전체 직원수보다 적을 때
-        while (RandomEmployees.Count < count && SelectIndex.Count < employees.Count)
+        while (getEmployees.Count < count && selectIndex.Count < AllEmployees.Count)
         {
-            int RandomIndex = Random.Range(0, employees.Count);
+            int RandomIndex = Random.Range(0, AllEmployees.Count);
             // 만약 선택된 인덱스가 HashSet에 없으면 직원 리스트에 추가 
-            if (!SelectIndex.Contains(RandomIndex))
+            if (!selectIndex.Contains(RandomIndex))
             {
-                SelectIndex.Add(RandomIndex);
-                RandomEmployees.Add(employees[RandomIndex]);
+                selectIndex.Add(RandomIndex);
+                getEmployees.Add(AllEmployees[RandomIndex]);
             }
         }
-        return RandomEmployees;
+        return getEmployees;
+    }
+
+    public void HireEmployee(Employee employee)
+    {
+        if (IsHireEmployees.Count < MaxHireEmployee)
+        {
+            employee.Hire();
+            IsHireEmployees.Add(employee);
+        }
     }
 
 }
