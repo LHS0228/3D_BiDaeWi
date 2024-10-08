@@ -16,6 +16,14 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField]
     private int airconFisrtConst;
 
+    public int mainBuildingLevel;
+    public int subBuildingLevel;
+    public int subBuildingLevel1;
+    public int subBuildingLevel2;
+    public int subBuildingLevel3;
+    public int subBuildingLevel4;
+    public int subBuildingLevel5;
+
     [Header("업그레이드 관련 텍스트")]
     [SerializeField] private TextMeshProUGUI upgardeLevel_Computer_Text;
     [SerializeField] private TextMeshProUGUI upgardeLevel_Aircon_Text;
