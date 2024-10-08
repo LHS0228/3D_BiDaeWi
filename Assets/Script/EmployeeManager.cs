@@ -16,14 +16,14 @@ public class EmployeeManager : MonoBehaviour
 
     private void Awake()
     {
-        Generation_Employee(10);
+        Generation_Employee(25);
     }
 
     private void Generation_Employee(int count)
     {
         for (int i = 0; i < count; i++)
         {
-            Employee newEmployee = new Employee($"Employee {i + 1}", false);
+            Employee newEmployee = new Employee($"{i + 1}", false);
             AllEmployees.Add(newEmployee);
         }
         // 확인 함수
@@ -53,13 +53,22 @@ public class EmployeeManager : MonoBehaviour
         return getEmployees;
     }
 
-    public void HireEmployee(Employee employee)
+    public bool HireEmployee(Employee employee)
     {
-        if (IsHireEmployees.Count < MaxHireEmployee)
+        if (IsHireEmployees.Count < MaxHireEmployee && !employee.IsHire)
         {
             employee.Hire();
             IsHireEmployees.Add(employee);
+            Debug.Log($"{employee.Name} 고용");
+            return true;
         }
+        return false;
+    }
+
+    // 업그레이드에서 직원을 사용하기 위해 리턴
+    public List<Employee> GetHiredEmployee()
+    {
+        return IsHireEmployees;
     }
 
 }

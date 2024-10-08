@@ -10,7 +10,10 @@ public class Employee
     public string Race { get; set; }
     public bool IsHire { get; set; }
 
-    private List<string> Traits = new List<string>() { "성급한", "느긋한", "아침형 인간", "부엉이", "신속한", "신중한", "협동심" };
+    public float Touch_Bonus { get; set; }
+    public float Auto_Bonus { get; set; }
+
+    private List<string> Traits = new List<string>() { "성급한", "느긋한", "신중한", "협동심", "재빠른" };
     private List<string> Races = new List<string>() { "인간", "엘프", "오크" };
 
     // 생성자: 이름을 받아서 랜덤 특성을 부여
@@ -20,6 +23,8 @@ public class Employee
         RandomRace();
         RandomTrait();
         this.IsHire = ishire;
+        Touch_Bonus = 0;
+        Auto_Bonus = 0;
     }
 
     private void RandomRace()
@@ -43,64 +48,41 @@ public class Employee
         IsHire = false;
         DeActiveTrait();
     }
-    // 각 특성에 해당하는 직원 고용시 활성화 됨
-    private void ActiveTrait()
+    // 각 특성에 해당하는 직원 고용시 활성화 됨 튜플 사용 터치 당, 자동 재화 관련
+    public (float, float) ActiveTrait()
     {
-        switch (Trait)
+        if (Touch_Bonus == 0 && Auto_Bonus == 0) // 계속 랜덤 값 바뀌는 거 방지
         {
-            case "성급한":
-
-                break;
-
-            case "느긋한":
-
-                break;
-            case "아침형 인간":
-
-                break;
-            case "부엉이":
-
-                break;
-            case "신속한":
-
-                break;
-            case "신중한":
-
-                break;
-            case "협동심":
-
-                break;
-
+            switch (Trait)
+            {
+                case "성급한":
+                    Touch_Bonus = Random.Range(0.01f, 0.1f);
+                    Auto_Bonus = Random.Range(0.01f, 0.05f);
+                    break;
+                case "느긋한":
+                    Touch_Bonus = Random.Range(0.01f, 0.05f);
+                    Auto_Bonus = Random.Range(0.01f, 0.1f);
+                    break;
+                case "재빠른":
+                    Touch_Bonus = Random.Range(0.1f, 0.2f);
+                    Auto_Bonus = 0f;
+                    break;
+                case "신중한":
+                    Touch_Bonus = 0f;
+                    Auto_Bonus = Random.Range(0.1f, 0.2f);
+                    break;
+                case "협동심":
+                    // 미구현
+                    break;
+            }
         }
+
+        return (Touch_Bonus, Auto_Bonus);
     }
 
-    private void DeActiveTrait()
+    public void DeActiveTrait()
     {
-        switch (Trait)
-        {
-            case "성급한":
-
-                break;
-
-            case "느긋한":
-
-                break;
-            case "아침형 인간":
-
-                break;
-            case "부엉이":
-
-                break;
-            case "신속한":
-
-                break;
-            case "신중한":
-
-                break;
-            case "협동심":
-
-                break;
-
-        }
+        Touch_Bonus = 0f;
+        Auto_Bonus = 0f;
     }
 }
