@@ -30,10 +30,12 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeCost_Computer_Text;
     [SerializeField] private TextMeshProUGUI upgradeCost_Aircon_Text;
 
+    private EmployeeManager employeeManager;
+
     // Start is called before the first frame update
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -45,24 +47,89 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
+        employeeManager = FindObjectOfType<EmployeeManager>();
         UpgardeText();
     }
 
     //돈 획득 배율 관련
-    public float GetAirconMoney()// 레벨 x ( 0.5 * 클릭시 획득 골드)
+    public float GetAirconMoney()
     {
-        return airconLevel * (0.5f *  airconFisrtConst);
-    }
+        // 기본 자동 획득 재화
+        float BaseMoney = airconLevel * (0.5f * airconFisrtConst);
 
+        // 고용한 직원 리스트를 가져옴
+        List<Employee> HiredEmployee = employeeManager.GetHiredEmployee();
+
+        // 직원의 특성 보너스 초기화
+        float Total_Auto_Bonus = 0f;
+
+        // 고용한 직원의 수가 0보다 컸을 때
+        if (HiredEmployee.Count > 0)
+        {
+            foreach (Employee employee in HiredEmployee)
+            {
+                // 파라미터 때문에 2개를 불러옴
+                (float touch_bonus, float auto_bonus) = employee.ActiveTrait();
+                //에어컨이기 때문에 오토 보너스만 가져옴
+                Total_Auto_Bonus += auto_bonus;
+
+            }// 터치 당 재화에 직원 특성을 곱한 값을 초당 자동 재화로 반환
+            return BaseMoney * (1 + Total_Auto_Bonus);
+        }
+        // 그게 아니라면 직원 특성을 곱한 값이 아닌 기본 값을 초당 자동 재화로 반환
+        return airconLevel * (0.5f * airconFisrtConst);
+    }
+    // 클릭 당 재화 함수
     public float GetComputerMoney()
     {
+        // 기본 클릭 당 재화
+        float BaseMoney = computerFisrtConst + (computerLevel * computerFisrtConst);
+
+        // 고용한 직원 리스트를 가져옴
+        List<Employee> HiredEmployee = employeeManager.GetHiredEmployee();
+
+        // 직원의 특성 보너스 초기화
+        float Total_Touch_Bonus = 0f;
+
+        // 고용한 직원의 수가 0보다 컸을 때
+        if (HiredEmployee.Count > 0)
+        {
+            // 고용한 직원 리스트에 직원을 다 봄
+            foreach (Employee employee in HiredEmployee)
+            {
+                // 파라미터 때문에 2개를 불러옴
+                (float touch_bonus, float auto_bonus) = employee.ActiveTrait();
+                //컴퓨터기 때문에 터치 보너스만 가져옴
+                Total_Touch_Bonus += touch_bonus;
+
+            }
+            // 터치 당 재화에 직원 특성을 곱한 값을 터치 당 재화로 반환
+            return BaseMoney * (1 + Total_Touch_Bonus);
+        } // 그게 아니라면 직원 특성을 곱한 값이 아닌 기본 값을 터치 당 재화로 반환
         return computerFisrtConst + (computerLevel * computerFisrtConst);
+
+    }
+
+    public (float totaltouchbonus, float totalautobonus) GetEmployeeBonus(Employee employee)
+    {
+        float Total_Touch_Bonus = 0f;
+        float Total_Auto_Bonus = 0f;
+
+        List<Employee> Hireemployees = employeeManager.GetHiredEmployee();
+
+        foreach (Employee employee1 in Hireemployees)
+        {
+            (float touchbonus, float autobonus) = employee1.ActiveTrait();
+            Total_Touch_Bonus += touchbonus;
+            Total_Auto_Bonus += autobonus;
+        }
+        return (Total_Touch_Bonus, Total_Auto_Bonus);
     }
 
     //코스트 소비 배율 관련
     public int GetAirconConst()
     {
-        return Mathf.RoundToInt(airconFisrtConst * (float)(Mathf.Pow(1.2f, airconLevel))); // Mathf.Pow은 double형 반환이여서 float로 반환
+        return Mathf.RoundToInt(airconFisrtConst * (float)(Mathf.Pow(1.2f, airconLevel)));
     }
 
     public int GetComputerConst()
@@ -72,7 +139,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeFacilities(string type)
     {
-        switch(type)
+        switch (type)
         {
             case "Aircon":
                 if (MoneyManager.instance.money >= GetAirconConst())
