@@ -49,7 +49,7 @@ public class CameraConversion : MonoBehaviour
         }
     }
 
-    public void CameraButton()
+    public void CameraChangeButton()
     {
         if(camera2D.activeSelf)
         {
