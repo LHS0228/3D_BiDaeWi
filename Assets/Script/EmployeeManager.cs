@@ -11,6 +11,7 @@ public class EmployeeManager : MonoBehaviour
     public List<Employee> GetEmployees = new List<Employee>();
     public List<Employee> IsHireEmployees = new List<Employee>();
 
+    private int HireCost = 5000;
     private TextMeshProUGUI Employee1;
     private int MaxHireEmployee = 5;
 
@@ -57,10 +58,18 @@ public class EmployeeManager : MonoBehaviour
     {
         if (IsHireEmployees.Count < MaxHireEmployee && !employee.IsHire)
         {
-            employee.Hire();
-            IsHireEmployees.Add(employee);
-            Debug.Log($"{employee.Name} 고용");
-            return true;
+            if (MoneyManager.instance.money >= HireCost)
+            {
+                MoneyManager.instance.money -= HireCost;
+                employee.Hire();
+                IsHireEmployees.Add(employee);
+                Debug.Log($"{employee.Name} 고용");
+                return true;
+            }
+            else
+            {
+                Debug.Log("고용 할 비용이 부족합니다.");
+            }
         }
         return false;
     }

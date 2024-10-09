@@ -7,7 +7,8 @@ using Unity.VisualScripting;
 
 public class EmployeeManagerUI : MonoBehaviour
 {
-    [SerializeField] private GameObject EmployeeInfoPrefab;
+    [SerializeField] private GameObject EmployeeInfoPrefab; // 직원 텍스트 정보
+    [SerializeField] private GameObject EmployeeImagePrefab; // 직원 이미지 프리팹
     [SerializeField] private Transform EmployeeContentList;
     [SerializeField] private GameObject HirePanel;
     [SerializeField] private Transform RandomEmployee;
@@ -63,6 +64,13 @@ public class EmployeeManagerUI : MonoBehaviour
     private IEnumerator ShowHireEmployees(Employee employee, Button hirebutton)
     {
         GameObject Hire_Info = Instantiate(EmployeeInfoPrefab, EmployeeContentList);
+
+        GameObject Hire_Image = Instantiate(EmployeeImagePrefab, Hire_Info.transform);
+        EmployeeImage randomchar = Hire_Image.GetComponent<EmployeeImage>();
+        if (randomchar != null)
+        {
+            randomchar.SetRandomCharacter(employee);
+        }
 
         RectTransform rectTransform = Hire_Info.GetComponent<RectTransform>();
 

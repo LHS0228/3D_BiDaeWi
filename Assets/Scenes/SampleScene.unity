@@ -18609,6 +18609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EmployeeInfoPrefab: {fileID: 2314471461291165902, guid: 49caa68dfe12da342af7fc0ce958cebd, type: 3}
+  EmployeeImagePrefab: {fileID: 5326600648841857400, guid: d7a004782f9e58a4ab25d95dec88fabe, type: 3}
   EmployeeContentList: {fileID: 299671027962174045}
   HirePanel: {fileID: 1108615393933406879}
   RandomEmployee: {fileID: 5720137680693207763}
