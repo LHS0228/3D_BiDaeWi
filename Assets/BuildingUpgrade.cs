@@ -1,59 +1,119 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UIElements;
+
+enum BuildingType
+{
+    Main,
+    Bank,
+    Energy,
+    Lawfirm,
+    Healthcare,
+    Carance,
+    Cement
+}
 
 public class BuildingUpgrade : MonoBehaviour
 {
-    [SerializeField] private GameObject[] Building_Main;
-    [SerializeField] private GameObject[] Building_2;
-    [SerializeField] private GameObject[] Building_3;
-    [SerializeField] private GameObject[] Building_4;
-    [SerializeField] private GameObject[] Building_5;
-    [SerializeField] private GameObject[] Building_6;
-    [SerializeField] private GameObject[] Building_7;
+    [SerializeField] private GameObject[] building_piece_Main;
+    [SerializeField] private GameObject[] building_piece_Bank;
+    [SerializeField] private GameObject[] building_piece_Energy;
+    [SerializeField] private GameObject[] building_piece_Lawfirm;
+    [SerializeField] private GameObject[] building_piece_Healthcare;
+    [SerializeField] private GameObject[] building_piece_Crane;
+    [SerializeField] private GameObject[] building_piece_Cement;
 
-    private float setTime;
+    [SerializeField] private GameObject building_Main; //메인
+    [SerializeField] private GameObject building_Bank; //서브
+    [SerializeField] private GameObject building_Energy; //보라
+    [SerializeField] private GameObject building_Lawfire; //파랑
+    [SerializeField] private GameObject building_Healthcare; //초록
+    [SerializeField] private GameObject building_Crane; // 빨강
+    [SerializeField] private GameObject building_Cement; //갈색
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private GameObject main_Logo;
+
+    private GameObject[] setBuilding_piece = null;
+    private GameObject setBuilding = null;
+    private Vector3 oriangeTrans;
+    private float setHeight;
+
+    private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            BuildingUpgradeAnim(BuildingType.Energy, 3);
+        }
     }
 
-    void BuildingUpgradeAnim(string buildingName, int step)
+    void BuildingUpgradeAnim(BuildingType buildingType, int step)
     {
-        GameObject[] setBuilding = null;
+        setBuilding_piece = null;
+        setBuilding = null;
 
-        switch (buildingName)
+        switch (buildingType)
         {
-            case "건물메인":
-                setBuilding = Building_Main;
+            case BuildingType.Main:
+                setBuilding = building_Main;
+                setBuilding_piece = building_piece_Main;
+                oriangeTrans = building_Main.transform.position;
+                setHeight = 6;
                 break;
-            case "건물서브1":
-                setBuilding = Building_2;
+            case BuildingType.Bank:
+                setBuilding = building_Bank;
+                setBuilding_piece = building_piece_Bank;
+                oriangeTrans = building_Bank.transform.position;
+                setHeight = 5;
                 break;
-            case "건물서브2":
-                setBuilding = Building_3;
+            case BuildingType.Energy:
+                setBuilding = building_Energy;
+                setBuilding_piece = building_piece_Energy;
+                oriangeTrans = building_Energy.transform.position;
+                setHeight = 4;
                 break;
-            case "건물서브3":
-                setBuilding = Building_4;
+            case BuildingType.Lawfirm:
+                setBuilding = building_Lawfire;
+                setBuilding_piece = building_piece_Lawfirm;
+                oriangeTrans = building_Lawfire.transform.position;
+                setHeight = 4;
                 break;
-            case "건물서브4":
-                setBuilding = Building_5;
+            case BuildingType.Healthcare:
+                setBuilding = building_Healthcare;
+                setBuilding_piece = building_piece_Healthcare;
+                oriangeTrans = building_Healthcare.transform.position;
+                setHeight = 4;
                 break;
-            case "건물서브5":
-                setBuilding = Building_6;
+            case BuildingType.Carance:
+                setBuilding = building_Crane;
+                setBuilding_piece = building_piece_Crane;
+                oriangeTrans = building_Crane.transform.position;
+                setHeight = 4;
                 break;
-            case "건물서브6":
-                setBuilding = Building_7;
+            case BuildingType.Cement:
+                setBuilding = building_Cement;
+                setBuilding_piece = building_piece_Cement;
+                oriangeTrans = building_Cement.transform.position;
+                setHeight = 4;
                 break;
         }
 
-        if(step == 0)
+        CameraConversion.instance.CameraChange(CameraType.Camera3D);
+        DOTween.Sequence().AppendInterval(1.5f).AppendCallback(() => setBuilding.transform.DOMoveY(-(setHeight * (step +1)), 4 + (0.5f* step)));
+
+        StartCoroutine(BuildingUpAnim(step));
+    }
+
+    IEnumerator BuildingUpAnim(int step)
+    {
+        yield return new WaitForSeconds(4 + (0.5f * step));
+
+        if (step == 0)
         {
-            for(int i=0; i < setBuilding.Length + 1; i++)
+            for(int i=0; i < setBuilding_piece.Length + 1; i++)
             {
-                setBuilding[i].SetActive(false);
+                setBuilding_piece[i].SetActive(false);
             }
         }
 
@@ -61,8 +121,11 @@ public class BuildingUpgrade : MonoBehaviour
         {
             for(int i = 0; i< step + 1; i++)
             {
-                setBuilding[i].SetActive(true);
+                setBuilding_piece[i].SetActive(true);
             }
         }
+
+        setBuilding.transform.DOMoveY(oriangeTrans.y, 4 + (0.5f * step));
     }
+    
 }

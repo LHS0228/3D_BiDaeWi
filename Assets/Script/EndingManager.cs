@@ -20,11 +20,6 @@ public class EndingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))
-        {
-            isEndding = true;
-        }
-
         if(isEndding)
         {
             setTime += Time.deltaTime;
@@ -169,6 +164,7 @@ public class EndingManager : MonoBehaviour
                 break;
 
             case > 0:
+                CameraConversion.instance.camera3D.GetComponent<Camera>().fieldOfView = 84.9f;
                 robot_parts[0].SetActive(true);
                 robot_Camera.SetActive(true);
                 other_Camera[0].SetActive(false);
