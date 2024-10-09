@@ -27,6 +27,7 @@ public class ClickMoney : MonoBehaviour, IPointerClickHandler
         if (mainCamera.gameObject.activeSelf)
         {
             Debug.Log("돈범");
+            SoundManager.instance.PlaySFX(2);
             MoneyManager.instance.money += MoneyManager.instance.clickMoney;
             MoneyManager.instance.UITextUpdate();
             PoolingManager.instance.SpawnObject("Coin", mouseWorldPosition);

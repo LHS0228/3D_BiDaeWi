@@ -16,6 +16,13 @@ public class SoundManager : MonoBehaviour
     public int poolSize = 10;                  // 오브젝트 풀 크기
     private List<AudioSource> soundPool = new List<AudioSource>(); // 오디오 소스 풀
 
+    [Header("Volume Settings")]
+    [Range(0f, 1f)]
+    public float backgroundMusicVolume = 1f;   // 배경음 볼륨 (0 ~ 1)
+    [Range(0f, 1f)]
+    public float sfxVolume = 1f;               // 효과음 볼륨 (0 ~ 1)
+
+
     private void Awake()
     {
         // 싱글톤 패턴 설정
@@ -37,6 +44,7 @@ public class SoundManager : MonoBehaviour
         {
             backgroundMusicSource.clip = backgroundMusicClips[clipIndex];
             backgroundMusicSource.loop = true;  // 배경음 반복 재생
+            backgroundMusicSource.volume = backgroundMusicVolume;  // 설정된 배경음 볼륨 적용
             backgroundMusicSource.Play();
         }
     }
@@ -86,6 +94,7 @@ public class SoundManager : MonoBehaviour
         {
             AudioSource source = GetAvailableSoundSource();
             source.clip = sfxClips[clipIndex];
+            source.volume = sfxVolume;  // 설정된 효과음 볼륨 적용
             source.Play();
 
             // 재생이 끝난 후 비활성화
@@ -98,5 +107,18 @@ public class SoundManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         source.gameObject.SetActive(false);  // 다시 풀로 반환
+    }
+
+    // 배경음 볼륨 조절
+    public void SetBackgroundMusicVolume(float volume)
+    {
+        backgroundMusicVolume = Mathf.Clamp(volume, 0f, 1f);  // 볼륨 값 클램핑
+        backgroundMusicSource.volume = backgroundMusicVolume;  // 즉시 적용
+    }
+
+    // 효과음 볼륨 조절
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = Mathf.Clamp(volume, 0f, 1f);  // 볼륨 값 클램핑
     }
 }

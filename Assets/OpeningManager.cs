@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class OpeningManager : MonoBehaviour
 {
     [SerializeField]
+    private GameObject backGround;
+    [SerializeField]
     private GameObject storys_obj;
     [SerializeField]
     private GameObject[] storyImage;
@@ -35,6 +37,7 @@ public class OpeningManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && !isNotFirst)
         {
             isPlayStop = true;
+            backGround.SetActive(false);
             gameTitle.SetActive(true);
             storys_obj.SetActive(false);
         }
@@ -176,6 +179,8 @@ public class OpeningManager : MonoBehaviour
             case 11:
                 if (setTime > 5)
                 {
+                    backGround.SetActive(false);
+                    storys_obj.SetActive(false);
                     isNotFirst = true;
                     isPlayStop = true;
                     gameTitle.SetActive(true);
