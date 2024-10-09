@@ -7,7 +7,6 @@ public class ClickMoney : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Camera mainCamera;
     Vector3 mouseWorldPosition;
-
     // Update is called once per frame
     void Update()
     {
@@ -24,7 +23,7 @@ public class ClickMoney : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (mainCamera.gameObject.activeSelf)
+        if (mainCamera.gameObject.activeSelf && !GameManager.instance.isGameStop)
         {
             Debug.Log("돈범");
             SoundManager.instance.PlaySFX(2);
