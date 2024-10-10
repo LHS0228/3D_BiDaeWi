@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class EndingManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class EndingManager : MonoBehaviour
     [SerializeField] private GameObject robot;
     [SerializeField] private GameObject[] other_Camera;
     [SerializeField] private GameObject robot_Camera;
+
+    [SerializeField] private GameObject endding_Picture;
+    [SerializeField] private GameObject[] canvers;
 
     private bool isEndding;
     private float setTime;
@@ -31,10 +35,15 @@ public class EndingManager : MonoBehaviour
             switch(counting)
             {
                 case 0:
+                    for (int i = 0; i < canvers.Length; i++)
+                    {
+                        canvers[i].SetActive(false);
+                    }
+
+                    CameraConversion.instance.CameraChange(CameraType.Camera3D);
                     EnddingStart();
                     break;
                 case 1:
-                    robot_Camera.SetActive(true);
                     Robot_Transformation();
                     break;
             }
@@ -46,7 +55,7 @@ public class EndingManager : MonoBehaviour
         switch(setTime)
         {
             case > 4f:
-                buildings[6].GetComponent<Animator>().enabled = true;
+                buildings[5].GetComponent<Animator>().enabled = true;
                 if (setTime > 5f)
                 {
                     counting = 1;
@@ -54,7 +63,7 @@ public class EndingManager : MonoBehaviour
                 }
                 break;
             case > 3.5f:
-                buildings[5].GetComponent<Animator>().enabled = true;
+                buildings[1].GetComponent<Animator>().enabled = true;
                 break;
             case > 3f:
                 buildings[4].GetComponent<Animator>().enabled = true;
@@ -66,7 +75,7 @@ public class EndingManager : MonoBehaviour
                 buildings[2].GetComponent<Animator>().enabled = true;
                 break;
             case > 1.5f:
-                buildings[1].GetComponent<Animator>().enabled = true;
+                buildings[6].GetComponent<Animator>().enabled = true;
                 break;
             case > 1:
                 buildings[0].GetComponent<Animator>().enabled = true;
@@ -78,6 +87,10 @@ public class EndingManager : MonoBehaviour
     {
         switch(setTime)
         {
+            case > 43:
+                endding_Picture.SetActive(true);
+                endding_Picture.GetComponent<Image>().DOColor(new Color(1, 1, 1, 1), 7);
+                break;
             case > 40:
                 robot_Camera.transform.DOMove(new Vector3(-231.6f, 313.2f, -180.6f), 8);
                 break;
