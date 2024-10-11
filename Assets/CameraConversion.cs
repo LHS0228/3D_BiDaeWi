@@ -17,8 +17,10 @@ public class CameraConversion : MonoBehaviour
     [SerializeField] public GameObject camera3D;
     [SerializeField] public GameObject cameraEnding;
 
+    private SoundManager soundManager;
     public void Awake()
     {
+        soundManager = FindObjectOfType<SoundManager>();
         if(instance == null)
         {
             instance = this;
@@ -61,5 +63,6 @@ public class CameraConversion : MonoBehaviour
             camera2D.SetActive(true);
             camera3D.SetActive(false);
         }
+        soundManager.PlaySFX(0);
     }
 }

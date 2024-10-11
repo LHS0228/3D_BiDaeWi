@@ -12,10 +12,13 @@ public class EmployeeManagerUI : MonoBehaviour
     [SerializeField] private Transform EmployeeContentList;
     [SerializeField] private GameObject HirePanel;
     [SerializeField] private Transform RandomEmployee;
+
     private EmployeeManager employeemanager;
+    private SoundManager soundmanager;
 
     private void Awake()
     {
+        soundmanager = FindObjectOfType<SoundManager>();
         HirePanel.SetActive(false);
     }
     private void Start()
@@ -99,6 +102,7 @@ public class EmployeeManagerUI : MonoBehaviour
         {
             HirePanel.SetActive(true);
         }
+        soundmanager.PlaySFX(3);
 
     }
     public void HireEmployee(Employee employee, Button hirebutton)
@@ -108,6 +112,7 @@ public class EmployeeManagerUI : MonoBehaviour
             StartCoroutine(ShowHireEmployees(employee, hirebutton));
             hirebutton.gameObject.SetActive(false);
             Debug.Log($"{employee.Name} , {employee.Race} , {employee.Trait} 추가");
+            soundmanager.PlaySFX(1);
         }
         else
         {
@@ -132,6 +137,7 @@ public class EmployeeManagerUI : MonoBehaviour
 
         List<Employee> RandomEmployees = employeemanager.Get_Random_Employees(5);
         ShowDisplayInfo(RandomEmployees);
+        soundmanager.PlaySFX(3);
     }
 
 }

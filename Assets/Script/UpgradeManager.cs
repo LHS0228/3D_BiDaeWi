@@ -31,10 +31,13 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeCost_Aircon_Text;
 
     private EmployeeManager employeeManager;
+    private SoundManager soundManager;
 
     // Start is called before the first frame update
     void Awake()
     {
+        soundManager = FindObjectOfType<SoundManager>();
+
         if (instance == null)
         {
             instance = this;
@@ -147,6 +150,7 @@ public class UpgradeManager : MonoBehaviour
                     MoneyManager.instance.money -= GetAirconConst();
                     airconLevel++;
                     Debug.Log("에어컨 업그레이드 : " + airconLevel);
+                    soundManager.PlaySFX(5);
                 }
                 else
                 {
@@ -160,6 +164,7 @@ public class UpgradeManager : MonoBehaviour
                     MoneyManager.instance.money -= GetComputerConst();
                     computerLevel++;
                     Debug.Log("컴퓨터 업그레이드: " + computerLevel);
+                    soundManager.PlaySFX(5);
                 }
                 else
                 {

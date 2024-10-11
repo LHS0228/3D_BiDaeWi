@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Tutoreal : MonoBehaviour
+public class Tutorial : MonoBehaviour
 {
     [SerializeField]
     private GameObject bilnd;
@@ -29,11 +29,11 @@ public class Tutoreal : MonoBehaviour
     {
         if (!tutoEnd)
         {
-            TutorealOn();
+            TutorialOn();
         }
     }
 
-    void TutorealOn()
+    void TutorialOn()
     {
         if(setCount < guideDialogue.Length)
         {
