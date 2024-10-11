@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
@@ -17,11 +18,12 @@ public class SoundManager : MonoBehaviour
     private List<AudioSource> soundPool = new List<AudioSource>(); // 오디오 소스 풀
 
     [Header("Volume Settings")]
-    [Range(0f, 1f)]
     public float backgroundMusicVolume = 1f;   // 배경음 볼륨 (0 ~ 1)
-    [Range(0f, 1f)]
     public float sfxVolume = 1f;               // 효과음 볼륨 (0 ~ 1)
 
+    [Header("Volume 슬라이드 바(소리 설정)")]
+    [SerializeField] private Slider BGMSlider;
+    [SerializeField] private Slider SFXSlider;
 
     private void Awake()
     {
@@ -35,6 +37,15 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        BGMSlider.onValueChanged.AddListener(SetBackgroundMusicVolume);
+        BGMSlider.value = backgroundMusicVolume;
+
+        SFXSlider.onValueChanged.AddListener(SetSFXVolume);
+        SFXSlider.value = sfxVolume;
     }
 
     // 배경음 재생
@@ -121,4 +132,5 @@ public class SoundManager : MonoBehaviour
     {
         sfxVolume = Mathf.Clamp(volume, 0f, 1f);  // 볼륨 값 클램핑
     }
+
 }
