@@ -23,7 +23,7 @@ public class Tutorial : MonoBehaviour
     void Start()
     {
         GameManager.instance.isGameStop = true;
-        guideDialogue = new string[] { "방법을 알려드리기 전, \n저는 OOO이라고합니다.",
+        guideDialogue = new string[] { "아, 방법을 알려드리기 전, \n저는 비서 이다혜라고합니다.",
             "좌측 배경을 누르면 \n\n회사 운영에 필요한 코인을 획득할 수 있습니다.",
             "좌측 상단에 보이시는 것들은 \n현재 가지고 있는 코인, 클릭당 코인, \n초당 코인을 나타냅니다.",
             "우측 상단에 보이는 업그레이드를 눌러보실까요?",

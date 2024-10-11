@@ -22998,9 +22998,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC548\uB155\uD558\uC138\uC694 \uB274 \uC6D4\uB4DC\uC5D0\n\uC624\uC2E0\uAC78
-    \uD658\uC601\uD569\uB2C8\uB2E4.\n\n\uC800\uD76C \uD3A0\uC6D4\uB4DC\uB294 \uACE0\uAC1D\uB2D8\uC758\n\uC11C\uBE44\uC2A4\uB97C
-    \uCC45\uC784\uC838 \uC8FC\uACE0 \uC788\uC5C8\uC2B5\uB2C8\uB2E4."
+  m_text: "\uC624\uC168\uAD70\uC694 \uC0AC\uC7A5\uB2D8 !\n\n\uD68C\uC0AC \uC6B4\uC601
+    \uBC29\uC2DD\uC744 \uC54C\uB824\uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5224b919176725e4b8848c0de719979c, type: 2}
   m_sharedMaterial: {fileID: -2332632790855316146, guid: 5224b919176725e4b8848c0de719979c, type: 2}
