@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] Blinds;
+
+    [SerializeField]
+    private Button[] Buttons;
 
     [SerializeField]
     private GameObject guide;
@@ -35,7 +39,7 @@ public class Tutorial : MonoBehaviour
             "회사를 업그레이드하기 위해서는 \n각 조건을 충족시켜야 합니다.",
             "설명은 여기까지입니다, \n이제 회사를 운영해 보세요 !",
             ""};
-
+        DisableOnClickButtons(false);
 
     }
 
@@ -79,12 +83,17 @@ public class Tutorial : MonoBehaviour
             tutoEnd = true;
         }
     }
-    void TutorialGuide()
+    private void TutorialGuide()
     {
         switch (setCount)
         { // 0 : 왼쪽 // 1 : 오른쪽 // 2 : 업그레이드 // 3 :직원 // 4 :회사 // 5 : 고용
+            // 0 업글  1 직원 2 회사
             case 0:
                 // 소개
+                foreach (Button buttons in Buttons)
+                {
+                    buttons.interactable = false;
+                }
                 break;
 
             case 1: // 방법을 알려주긴 전에 소개
@@ -100,19 +109,23 @@ public class Tutorial : MonoBehaviour
                 break;
 
             case 4: // 2 "우측 상단에 보이는 업그레이드를 눌러보실까요?",
-                // 좌측 비활성화 , 업그레이드 활성화
+                    // 좌측 비활성화 , 업그레이드 활성화
+
                 Blinds[0].SetActive(true);
                 Blinds[2].SetActive(false);
+                Buttons[0].interactable = true;
                 break;
 
             case 5: //"업그레이드는 회사의 부품을 \n업그레이드하여 \n획득할 코인을 증가시켜 줍니다.",
                 // 우측 활성화
                 Blinds[1].SetActive(false);
                 Blinds[5].SetActive(false);
+                Buttons[0].interactable = false;
                 break;
 
             case 6://"그럼, 다음 직원을 눌러보실까요?",
                 // 우측 비활성화 , 직원 활성화
+                Buttons[1].interactable = true;
                 Blinds[1].SetActive(true);
                 Blinds[2].SetActive(true);
                 Blinds[3].SetActive(false);
@@ -126,11 +139,13 @@ public class Tutorial : MonoBehaviour
                 break;
 
             case 8: // "그리고 직원 고용에는 5,000코인이 드니 명심해 주세요 !"
+                Buttons[1].interactable = false;
                 Blinds[1].SetActive(false);
                 break;
 
             case 9: //"회사를 눌러보실까요?",
                     // 회사 활성화
+                Buttons[2].interactable = true;
                 Blinds[1].SetActive(true);
                 Blinds[5].SetActive(true);
                 Blinds[3].SetActive(true);
@@ -149,7 +164,7 @@ public class Tutorial : MonoBehaviour
                 break;
 
             case 12:
-
+                ableOnClickButtons(true);
                 break;
 
             default:
@@ -157,6 +172,21 @@ public class Tutorial : MonoBehaviour
                 break;
         }
 
+    }
 
+    private void DisableOnClickButtons(bool IsActive)
+    {
+        foreach (Button UIbt in Buttons)
+        {
+            UIbt.interactable = IsActive;
+        }
+    }
+
+    private void ableOnClickButtons(bool IsActive)
+    {
+        foreach (Button UIbt in Buttons)
+        {
+            UIbt.interactable = IsActive;
+        }
     }
 }
