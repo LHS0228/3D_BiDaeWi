@@ -179,9 +179,9 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgardeText()
     {
-        upgardeLevel_Computer_Text.text = "Computer : " + computerLevel;
-        upgardeLevel_Aircon_Text.text = "Aircon : " + airconLevel;
-        upgradeCost_Computer_Text.text = GetComputerConst() + " Cost";
-        upgradeCost_Aircon_Text.text = GetAirconConst() + " Cost";
+        upgardeLevel_Computer_Text.text = "컴퓨터 Lv " + computerLevel;
+        upgardeLevel_Aircon_Text.text = "에어컨 Lv " + airconLevel; ;
+        upgradeCost_Computer_Text.text = GetComputerConst() + " 원";
+        upgradeCost_Aircon_Text.text = GetAirconConst() + " 원";
     }
 }

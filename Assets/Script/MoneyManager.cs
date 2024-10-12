@@ -64,9 +64,9 @@ public class MoneyManager : MonoBehaviour
 
     public void UITextUpdate()
     {
-        moneyText.text = money + " won";
-        clickMoneyText.text = clickMoney + " / click";
-        secondMoneyText.text = secondMoney + " / second";
+        moneyText.text = money + " 원";
+        clickMoneyText.text = clickMoney + " / 클릭 당";
+        secondMoneyText.text = secondMoney + " / 초 당";
     }
 
     public void GetMoneyUpdate()
