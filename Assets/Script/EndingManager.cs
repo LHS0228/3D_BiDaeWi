@@ -24,11 +24,6 @@ public class EndingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            isEndding = true;
-        }
-
         if(isEndding)
         {
             setTime += Time.deltaTime;

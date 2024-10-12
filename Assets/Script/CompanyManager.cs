@@ -76,6 +76,8 @@ public class CompanyManager : MonoBehaviour
     }
     private void UpdateRequires()
     {
+        BuildingUpgrade.instance.AllBuildingUpgrade(CompanyLevel - 1);
+
         switch (CompanyLevel)
         {
             case 2:

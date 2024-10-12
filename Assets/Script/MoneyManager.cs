@@ -8,9 +8,9 @@ public class MoneyManager : MonoBehaviour
     public static MoneyManager instance;
 
     [Header("가진 돈, 클릭 당, 초 당")]
-    public int money;
-    public int clickMoney = 1;
-    public int secondMoney = 0;
+    public long money;
+    public long clickMoney = 1;
+    public long secondMoney = 0;
 
     [SerializeField, Header("텍스트")]
     private TextMeshProUGUI moneyText;
