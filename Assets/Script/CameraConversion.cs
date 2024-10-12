@@ -53,16 +53,19 @@ public class CameraConversion : MonoBehaviour
 
     public void CameraChangeButton()
     {
-        if(camera2D.activeSelf)
+        if (!GameManager.instance.isGameStop)
         {
-            camera2D.SetActive(false);
-            camera3D.SetActive(true);
+            if (camera2D.activeSelf)
+            {
+                camera2D.SetActive(false);
+                camera3D.SetActive(true);
+            }
+            else
+            {
+                camera2D.SetActive(true);
+                camera3D.SetActive(false);
+            }
+            soundManager.PlaySFX(0);
         }
-        else
-        {
-            camera2D.SetActive(true);
-            camera3D.SetActive(false);
-        }
-        soundManager.PlaySFX(0);
     }
 }

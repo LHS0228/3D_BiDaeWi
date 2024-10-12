@@ -11,7 +11,11 @@ public class MenuManager : MonoBehaviour
 
     public void OnOptionMenu()
     {
-        optionMenu.SetActive(true);
+        if (!GameManager.instance.isGameStop)
+        {
+            optionMenu.SetActive(true);
+            GameManager.instance.isGameStop = true;
+        }
     }
 
     public void OnResetMenu()
@@ -22,6 +26,7 @@ public class MenuManager : MonoBehaviour
     public void OffOptionMenu()
     {
         optionMenu.SetActive(false);
+        GameManager.instance.isGameStop = false;
     }
 
     public void OffResetMenu()

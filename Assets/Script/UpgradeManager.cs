@@ -263,39 +263,42 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeFacilities(string type)
     {
-        switch (type)
+        if (!GameManager.instance.isGameStop)
         {
-            case "Aircon":
-                if (MoneyManager.instance.money >= GetAirconConst())
-                {
-                    MoneyManager.instance.money -= GetAirconConst();
-                    airconLevel++;
-                    Debug.Log("에어컨 업그레이드 : " + airconLevel);
-                    soundManager.PlaySFX(5);
-                }
-                else
-                {
-                    Debug.Log("돈이 부족합니다");
-                }
-                break;
+            switch (type)
+            {
+                case "Aircon":
+                    if (MoneyManager.instance.money >= GetAirconConst())
+                    {
+                        MoneyManager.instance.money -= GetAirconConst();
+                        airconLevel++;
+                        Debug.Log("에어컨 업그레이드 : " + airconLevel);
+                        soundManager.PlaySFX(5);
+                    }
+                    else
+                    {
+                        Debug.Log("돈이 부족합니다");
+                    }
+                    break;
 
-            case "Computer":
-                if (MoneyManager.instance.money >= GetComputerConst())
-                {
-                    MoneyManager.instance.money -= GetComputerConst();
-                    computerLevel++;
-                    Debug.Log("컴퓨터 업그레이드: " + computerLevel);
-                    soundManager.PlaySFX(5);
-                }
-                else
-                {
-                    Debug.Log("돈이 부족합니다");
-                }
-                break;
+                case "Computer":
+                    if (MoneyManager.instance.money >= GetComputerConst())
+                    {
+                        MoneyManager.instance.money -= GetComputerConst();
+                        computerLevel++;
+                        Debug.Log("컴퓨터 업그레이드: " + computerLevel);
+                        soundManager.PlaySFX(5);
+                    }
+                    else
+                    {
+                        Debug.Log("돈이 부족합니다");
+                    }
+                    break;
+            }
+
+            UpgardeText();
+            MoneyManager.instance.UITextUpdate();
         }
-
-        UpgardeText();
-        MoneyManager.instance.UITextUpdate();
     }
 
     public void UpgardeText()
