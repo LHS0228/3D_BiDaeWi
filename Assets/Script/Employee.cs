@@ -13,7 +13,7 @@ public class Employee
     public float Touch_Bonus { get; set; }
     public float Auto_Bonus { get; set; }
 
-    private List<string> Traits = new List<string>() { "성급한", "느긋한", "신중한", "협동심", "재빠른" };
+    private List<string> Traits = new List<string>() { "성급한", "느긋한", "신중한", "재빠른" };
     private List<string> Races = new List<string>() { "인간", "엘프", "오크" };
 
     // 생성자: 이름을 받아서 랜덤 특성을 부여
@@ -70,9 +70,6 @@ public class Employee
                 case "신중한":
                     Touch_Bonus = 0f;
                     Auto_Bonus = Random.Range(0.1f, 0.2f);
-                    break;
-                case "협동심":
-                    // 미구현
                     break;
             }
         }
