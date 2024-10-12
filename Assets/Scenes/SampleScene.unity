@@ -9023,6 +9023,33 @@ MonoBehaviour:
   upgardeLevel_Aircon_Text: {fileID: 1505365835}
   upgradeCost_Computer_Text: {fileID: 1573412843}
   upgradeCost_Aircon_Text: {fileID: 1957801118}
+  aircon_Image:
+  - {fileID: 194053292, guid: 68c61fc8502bd5249bdc6ff230cff2f8, type: 3}
+  - {fileID: -759279576, guid: 68c61fc8502bd5249bdc6ff230cff2f8, type: 3}
+  - {fileID: -1958832061, guid: 68c61fc8502bd5249bdc6ff230cff2f8, type: 3}
+  - {fileID: -111849812, guid: 68c61fc8502bd5249bdc6ff230cff2f8, type: 3}
+  - {fileID: 1970662755, guid: 68c61fc8502bd5249bdc6ff230cff2f8, type: 3}
+  - {fileID: -1465882632, guid: 68c61fc8502bd5249bdc6ff230cff2f8, type: 3}
+  - {fileID: 770784975, guid: 68c61fc8502bd5249bdc6ff230cff2f8, type: 3}
+  computer_Image:
+  - {fileID: 724507222, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: 2142972070, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: 1347649030, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: 1245890950, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: -1914455458, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: -1486152708, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: -1470402881, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: -1753546971, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: 241021205, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  - {fileID: 1949477585, guid: 4a39d1903bc73ff4e8b2967cf5418eba, type: 3}
+  aircon_Sprite: {fileID: 1775633103905415684}
+  computer_Sprite:
+  - {fileID: 1139846686412313750}
+  - {fileID: 3339026034212731274}
+  - {fileID: 2460513420604977665}
+  - {fileID: 6325533361743219240}
+  - {fileID: 1585683173061324732}
+  - {fileID: 6096305946189256977}
 --- !u!114 &684112148
 MonoBehaviour:
   m_ObjectHideFlags: 0

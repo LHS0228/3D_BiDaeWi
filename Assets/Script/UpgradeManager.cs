@@ -30,6 +30,15 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeCost_Computer_Text;
     [SerializeField] private TextMeshProUGUI upgradeCost_Aircon_Text;
 
+    [Header("에어컨 레벨별 이미지")]
+    [SerializeField] private Sprite[] aircon_Image;
+    [Header("컴퓨터 레벨별 이미지")]
+    [SerializeField] private Sprite[] computer_Image;
+
+    [Header("오브젝트s")]
+    [SerializeField] private GameObject aircon_Sprite;
+    [SerializeField] private GameObject[] computer_Sprite;
+
     private EmployeeManager employeeManager;
     private SoundManager soundManager;
 
@@ -52,6 +61,118 @@ public class UpgradeManager : MonoBehaviour
     {
         employeeManager = FindObjectOfType<EmployeeManager>();
         UpgardeText();
+    }
+
+    private void FixedUpdate()
+    {
+        switch(airconLevel)
+        {
+            case >= 90:
+                aircon_Sprite.GetComponent<SpriteRenderer>().sprite = aircon_Image[6];
+                break;
+
+            case >= 75:
+                aircon_Sprite.GetComponent<SpriteRenderer>().sprite = aircon_Image[5];
+                break;
+
+            case >= 60:
+                aircon_Sprite.GetComponent<SpriteRenderer>().sprite = aircon_Image[4];
+                break;
+
+            case >= 45:
+                aircon_Sprite.GetComponent<SpriteRenderer>().sprite = aircon_Image[3];
+                break;
+
+            case >= 30:
+                aircon_Sprite.GetComponent<SpriteRenderer>().sprite = aircon_Image[2];
+                break;
+
+            case >= 15:
+                aircon_Sprite.GetComponent<SpriteRenderer>().sprite = aircon_Image[1];
+                break;
+
+            case > 0:
+                aircon_Sprite.GetComponent<SpriteRenderer>().sprite = aircon_Image[0];
+                aircon_Sprite.SetActive(true);
+                break;
+
+            case 0:
+                aircon_Sprite.SetActive(false);
+                break;
+        }
+
+        switch(computerLevel)
+        {
+            case >= 90:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[9];
+                }
+                break;
+
+            case >= 80:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[8];
+                }
+                break;
+
+            case >= 70:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[7];
+                }
+                break;
+
+            case >= 60:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[6];
+                }
+                break;
+
+            case >= 50:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[5];
+                }
+                break;
+
+            case >= 40:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[4];
+                }
+                break;
+
+            case >= 30:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[3];
+                }
+                break;
+
+            case >= 20:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[2];
+                }
+                break;
+
+            case >= 10:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[1];
+                }
+                break;
+
+            case >= 0:
+                for (int i = 0; i < computer_Sprite.Length; i++)
+                {
+                    computer_Sprite[i].GetComponent<SpriteRenderer>().sprite = computer_Image[0];
+                }
+                break;
+        }
     }
 
     //돈 획득 배율 관련
