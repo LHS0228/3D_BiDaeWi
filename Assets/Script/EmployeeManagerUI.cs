@@ -70,7 +70,7 @@ public class EmployeeManagerUI : MonoBehaviour
 
     }
 
-    private IEnumerator ShowHireEmployees(Employee employee, Button hirebutton)
+    private IEnumerator ShowHireEmployees(Employee employee)
     {
         GameObject Hire_Info = Instantiate(EmployeeInfoPrefab, EmployeeContentList);
 
@@ -111,7 +111,7 @@ public class EmployeeManagerUI : MonoBehaviour
     {
         if (employeemanager.HireEmployee(employee))
         {
-            StartCoroutine(ShowHireEmployees(employee, hirebutton));
+            StartCoroutine(ShowHireEmployees(employee));
             StartCoroutine(CheckMark(hirebutton, index));
             hirebutton.gameObject.SetActive(false);
 

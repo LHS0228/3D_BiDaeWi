@@ -59,7 +59,7 @@ public class BuildingUpgrade : MonoBehaviour
         }
     }
 
-    public void AllBuildingUpgrade(int step)
+    public void AllBuildingUpgrade(int step, bool isLoad)
     {
         allTrans[0] = building_Main.transform.position;
         allTrans[1] = building_Bank.transform.position;
@@ -69,7 +69,10 @@ public class BuildingUpgrade : MonoBehaviour
         allTrans[5] = building_Crane.transform.position;
         allTrans[6] = building_Cement.transform.position;
 
-        CameraConversion.instance.CameraChange(CameraType.Camera3D);
+        if (!isLoad)
+        {
+            CameraConversion.instance.CameraChange(CameraType.Camera3D);
+        }
 
         DOTween.Sequence().AppendInterval(1.5f).AppendCallback(() => AllBuildingUpgrade_Down(step));
 
@@ -93,7 +96,7 @@ public class BuildingUpgrade : MonoBehaviour
 
         if (step == 0)
         {
-            for (int i = 0; i < building_piece_Main.Length + 1; i++)
+            for (int i = 0; i < building_piece_Main.Length; i++)
             {
                 building_piece_Main[i].SetActive(false);
                 building_piece_Bank[i].SetActive(false);
@@ -103,10 +106,13 @@ public class BuildingUpgrade : MonoBehaviour
                 building_piece_Crane[i].SetActive(false);
                 building_piece_Cement[i].SetActive(false);
             }
+
+            building_piece_Main[0].SetActive(true);
         }
 
         else
         {
+
             for (int i = 0; i < step + 1; i++)
             {
                 building_piece_Main[i].SetActive(true);
@@ -142,52 +148,7 @@ public class BuildingUpgrade : MonoBehaviour
 
     public void LoadBuildings(int step)
     {
-        if (step == 0)
-        {
-            for (int i = 0; i < building_piece_Main.Length + 1; i++)
-            {
-                building_piece_Main[i].SetActive(false);
-                building_piece_Bank[i].SetActive(false);
-                building_piece_Energy[i].SetActive(false);
-                building_piece_Lawfire[i].SetActive(false);
-                building_piece_Healthcare[i].SetActive(false);
-                building_piece_Crane[i].SetActive(false);
-                building_piece_Cement[i].SetActive(false);
-            }
-        }
-
-        else
-        {
-            for (int i = 0; i < step + 1; i++)
-            {
-                building_piece_Main[i].SetActive(true);
-                building_piece_Bank[i].SetActive(true);
-                building_piece_Energy[i].SetActive(true);
-                building_piece_Lawfire[i].SetActive(true);
-                building_piece_Healthcare[i].SetActive(true);
-                building_piece_Crane[i].SetActive(true);
-                building_piece_Cement[i].SetActive(true);
-
-                if (step == 1)
-                {
-                    building_Bank.transform.position -= new Vector3(0, 5f, 0);
-                    building_Energy.transform.position -= new Vector3(0, 4f, 0);
-                    building_Lawfire.transform.position -= new Vector3(0, 4f, 0);
-                    building_Healthcare.transform.position -= new Vector3(0, 4f, 0);
-                    building_Crane.transform.position -= new Vector3(0, 4f, 0);
-                    building_Cement.transform.position -= new Vector3(0, 4f, 0);
-                }
-            }
-        }
-
-        building_Main.transform.DOMoveY(allTrans[0].y, 3 + (0.5f * step));
-        building_Bank.transform.DOMoveY(allTrans[1].y, 3 + (0.5f * step));
-        building_Energy.transform.DOMoveY(allTrans[2].y, 3 + (0.5f * step));
-        building_Lawfire.transform.DOMoveY(allTrans[3].y, 3 + (0.5f * step));
-        building_Healthcare.transform.DOMoveY(allTrans[4].y, 3 + (0.5f * step));
-        building_Crane.transform.DOMoveY(allTrans[5].y, 3 + (0.5f * step));
-        building_Cement.transform.DOMoveY(allTrans[6].y, 3 + (0.5f * step));
-        main_Logo.transform.DOMoveY(4.62f + (3.2f * (step + 2)), 3 + (0.5f * step));
+        AllBuildingUpgrade(step, true);
     }
 
     public void BuildingUpgradeAnim(BuildingType buildingType, int step)

@@ -17,14 +17,12 @@ public class EmployeeManager : MonoBehaviour
 
     private void Awake()
     {
-        // 저장된 직원 데이터를 불러오기
-        SaveLoadManager.instance.LoadEmployeeData(out AllEmployees, out GetEmployees, out IsHireEmployees);
+        Generation_Employee(25);
+    }
 
-        // 저장된 데이터가 없을 때만 새로운 직원 생성
-        if (AllEmployees == null || AllEmployees.Count == 0)
-        {
-            Generation_Employee(25);
-        }
+    private void Start()
+    {
+        //SaveLoadManager.instance.LoadEmployeeData(out AllEmployees, out GetEmployees, out IsHireEmployees);
     }
 
     private void Generation_Employee(int count)
@@ -75,7 +73,7 @@ public class EmployeeManager : MonoBehaviour
                 Debug.Log($"{employee.Name} 고용");
 
                 // 직원 고용 후 저장
-                SaveLoadManager.instance.SaveEmployeeData(AllEmployees, GetEmployees, IsHireEmployees);
+                //SaveLoadManager.instance.SaveEmployeeData(AllEmployees, GetEmployees, IsHireEmployees);
                 return true;
             }
             else

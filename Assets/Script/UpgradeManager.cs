@@ -54,8 +54,8 @@ public class UpgradeManager : MonoBehaviour
     {
         employeeManager = FindObjectOfType<EmployeeManager>();
         companyManager = FindObjectOfType<CompanyManager>();
-        SaveLoadManager.instance.LoadData("AirconLevel", 0);
-        SaveLoadManager.instance.LoadData("ComputerLevel", 0);
+        airconLevel = SaveLoadManager.instance.LoadData("AirconLevel", 0);
+        computerLevel = SaveLoadManager.instance.LoadData("ComputerLevel", 0);
         UpgardeText();
     }
 

@@ -32,7 +32,7 @@ public class CompanyManager : MonoBehaviour
         upgradeManager = FindObjectOfType<UpgradeManager>();
         employeeManager = FindObjectOfType<EmployeeManager>();
         CompanyLevel = SaveLoadManager.instance.LoadData("CompanyLevel", 1);
-        BuildingUpgrade.instance.LoadBuildings(SaveLoadManager.instance.LoadData("CompanyLevel", 1));
+        BuildingUpgrade.instance.LoadBuildings(SaveLoadManager.instance.LoadData("CompanyLevel", 0));
     }
 
     private void Update()
@@ -79,7 +79,7 @@ public class CompanyManager : MonoBehaviour
     }
     private void UpdateRequires()
     {
-        BuildingUpgrade.instance.AllBuildingUpgrade(CompanyLevel - 1);
+        BuildingUpgrade.instance.AllBuildingUpgrade(CompanyLevel - 1, false);
 
         switch (CompanyLevel)
         {

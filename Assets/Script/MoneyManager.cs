@@ -37,6 +37,7 @@ public class MoneyManager : MonoBehaviour
 
     private void Start()
     {
+        money = SaveLoadManager.instance.LoadData("Money", 0);
         UITextUpdate();
     }
 
@@ -58,6 +59,7 @@ public class MoneyManager : MonoBehaviour
         {
             money += secondMoney;
             UITextUpdate();
+            SaveLoadManager.instance.SaveData("Money", (int)money);
             secondCountingTime = 0;
         }
     }
@@ -67,6 +69,7 @@ public class MoneyManager : MonoBehaviour
         moneyText.text = money + " 원";
         clickMoneyText.text = clickMoney + " / 클릭 당";
         secondMoneyText.text = secondMoney + " / 초 당";
+        SaveLoadManager.instance.SaveData("Money", (int)money);
     }
 
     public void GetMoneyUpdate()

@@ -15,11 +15,14 @@ public class SaveLoadManager : MonoBehaviour
     소리 볼륨 SFXVolume, BGMVolume
     튜토리얼 봤는지 확인 Y/N OkTutorial
     오프닝 봤는지 확인 Y/N OkOpening
+    돈 Money
+
      */
 
     public void Awake()
     {
-        if(instance == null)
+        SaveCheck();
+        if (instance == null)
         {
             instance = this;
         }
@@ -28,6 +31,7 @@ public class SaveLoadManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     public void SaveData(string saveName, int num)
     {
@@ -54,32 +58,15 @@ public class SaveLoadManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
-    // 직원 리스트를 저장하는 함수
-    public void SaveEmployeeData(List<Employee> allEmployees, List<Employee> getEmployees, List<Employee> isHireEmployees)
+    public void SaveCheck()
     {
-        // JSON 직렬화
-        string allEmployeesJson = JsonConvert.SerializeObject(allEmployees);
-        string getEmployeesJson = JsonConvert.SerializeObject(getEmployees);
-        string isHireEmployeesJson = JsonConvert.SerializeObject(isHireEmployees);
-
-        // 직렬화된 데이터를 PlayerPrefs에 저장
-        PlayerPrefs.SetString("AllEmployees", allEmployeesJson);
-        PlayerPrefs.SetString("GetEmployees", getEmployeesJson);
-        PlayerPrefs.SetString("IsHireEmployees", isHireEmployeesJson);
-        PlayerPrefs.Save(); // PlayerPrefs 저장
-    }
-
-    // 직원 리스트를 불러오는 함수
-    public void LoadEmployeeData(out List<Employee> allEmployees, out List<Employee> getEmployees, out List<Employee> isHireEmployees)
-    {
-        // JSON 데이터를 PlayerPrefs에서 불러오기
-        string allEmployeesJson = PlayerPrefs.GetString("AllEmployees", "");
-        string getEmployeesJson = PlayerPrefs.GetString("GetEmployees", "");
-        string isHireEmployeesJson = PlayerPrefs.GetString("IsHireEmployees", "");
-
-        // 데이터가 비어 있지 않으면 역직렬화하여 리스트로 변환
-        allEmployees = !string.IsNullOrEmpty(allEmployeesJson) ? JsonConvert.DeserializeObject<List<Employee>>(allEmployeesJson) : new List<Employee>();
-        getEmployees = !string.IsNullOrEmpty(getEmployeesJson) ? JsonConvert.DeserializeObject<List<Employee>>(getEmployeesJson) : new List<Employee>();
-        isHireEmployees = !string.IsNullOrEmpty(isHireEmployeesJson) ? JsonConvert.DeserializeObject<List<Employee>>(isHireEmployeesJson) : new List<Employee>();
+        Debug.Log("건물 : " + PlayerPrefs.GetInt("LoadBuildings", 0));
+        Debug.Log("건물 레벨 : " + PlayerPrefs.GetInt("CompanyLevel", 0));
+        Debug.Log("컴퓨터 레벨 : " + PlayerPrefs.GetInt("ComputerLevel", 0));
+        Debug.Log("에어컨 레벨 : " + PlayerPrefs.GetInt("AirconLevel", 0));
+        Debug.Log("소리 볼륨 b,s : " + PlayerPrefs.GetFloat("SFXVolume", 0) + ", " + PlayerPrefs.GetFloat("BGMVolume", 0));
+        Debug.Log("건물 레벨 : " + PlayerPrefs.GetInt("CompanyLevel", 0));
+        Debug.Log("튜토완료(가이드) : " + PlayerPrefs.GetInt("OkTutorial", 0));
+        Debug.Log("오프닝 : " + PlayerPrefs.GetInt("OkOpening", 0));
     }
 }

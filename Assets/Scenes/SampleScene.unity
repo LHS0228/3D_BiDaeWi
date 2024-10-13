@@ -5577,7 +5577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de76cb9211d90d44924bd450f540746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 12331321
+  money: 0
   clickMoney: 1
   secondMoney: 0
   moneyText: {fileID: 3631137864193908885}
@@ -9152,8 +9152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902c8406b85585e47bb2f25953e36fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  computerLevel: 111
-  airconLevel: 111
+  computerLevel: 0
+  airconLevel: 0
   computerFisrtConst: 10
   airconFisrtConst: 1
   upgardeLevel_Computer_Text: {fileID: 1878547418}
@@ -20779,7 +20779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1626736555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31852,7 +31852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8347493173993404320
 MonoBehaviour:
   m_ObjectHideFlags: 0
