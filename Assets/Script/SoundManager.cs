@@ -18,8 +18,8 @@ public class SoundManager : MonoBehaviour
     private List<AudioSource> soundPool = new List<AudioSource>(); // 오디오 소스 풀
 
     [Header("Volume Settings")]
-    public float backgroundMusicVolume = 1f;   // 배경음 볼륨 (0 ~ 1)
-    public float sfxVolume = 1f;               // 효과음 볼륨 (0 ~ 1)
+    public float backgroundMusicVolume = 0.5f;   // 배경음 볼륨 (0 ~ 1)
+    public float sfxVolume = 0.5f;               // 효과음 볼륨 (0 ~ 1)
 
     [Header("Volume 슬라이드 바(소리 설정)")]
     [SerializeField] private Slider BGMSlider;
@@ -41,11 +41,17 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        backgroundMusicVolume = SaveLoadManager.instance.LoadData("BGMVolume", 0.5f);
+        sfxVolume = SaveLoadManager.instance.LoadData("SFXVolume", 0.5f);
+
         BGMSlider.onValueChanged.AddListener(SetBackgroundMusicVolume);
         BGMSlider.value = backgroundMusicVolume;
 
         SFXSlider.onValueChanged.AddListener(SetSFXVolume);
         SFXSlider.value = sfxVolume;
+
+        BGMSlider.onValueChanged.AddListener(OnBGMSliderChanged);
+        SFXSlider.onValueChanged.AddListener(OnSFXSliderChanged);
     }
 
     // 배경음 재생
@@ -133,4 +139,19 @@ public class SoundManager : MonoBehaviour
         sfxVolume = Mathf.Clamp(volume, 0f, 1f);  // 볼륨 값 클램핑
     }
 
+    // BGM 슬라이더 값 변경 시 호출되는 메서드
+    public void OnBGMSliderChanged(float value)
+    {
+        backgroundMusicSource.volume = value; // BGM 볼륨 적용
+        PlayerPrefs.SetFloat("BGMVolume", value); // BGM 볼륨 저장
+        PlayerPrefs.Save(); // PlayerPrefs 저장
+    }
+
+    // SFX 슬라이더 값 변경 시 호출되는 메서드
+    public void OnSFXSliderChanged(float value)
+    {
+        backgroundMusicSource.volume = value; // SFX 볼륨 적용
+        PlayerPrefs.SetFloat("SFXVolume", value); // SFX 볼륨 저장
+        PlayerPrefs.Save(); // PlayerPrefs 저장
+    }
 }

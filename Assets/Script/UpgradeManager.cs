@@ -16,14 +16,6 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField]
     private int airconFisrtConst;
 
-    public int mainBuildingLevel;
-    public int subBuildingLevel;
-    public int subBuildingLevel1;
-    public int subBuildingLevel2;
-    public int subBuildingLevel3;
-    public int subBuildingLevel4;
-    public int subBuildingLevel5;
-
     [Header("업그레이드 관련 텍스트")]
     [SerializeField] private TextMeshProUGUI upgardeLevel_Computer_Text;
     [SerializeField] private TextMeshProUGUI upgardeLevel_Aircon_Text;
@@ -62,6 +54,8 @@ public class UpgradeManager : MonoBehaviour
     {
         employeeManager = FindObjectOfType<EmployeeManager>();
         companyManager = FindObjectOfType<CompanyManager>();
+        SaveLoadManager.instance.LoadData("AirconLevel", 0);
+        SaveLoadManager.instance.LoadData("ComputerLevel", 0);
         UpgardeText();
     }
 
@@ -299,6 +293,8 @@ public class UpgradeManager : MonoBehaviour
             }
 
             UpgardeText();
+            SaveLoadManager.instance.SaveData("AirconLevel", airconLevel);
+            SaveLoadManager.instance.SaveData("ComputerLevel", computerLevel);
             MoneyManager.instance.UITextUpdate();
         }
     }

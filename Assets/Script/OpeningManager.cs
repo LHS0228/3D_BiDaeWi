@@ -19,8 +19,20 @@ public class OpeningManager : MonoBehaviour
     private float setTime;
     private int setCount;
 
-    private bool isNotFirst;
+    private bool isNotFirst = false;
     private bool isPlayStop = false;
+
+    private void Start()
+    {
+        if(SaveLoadManager.instance.LoadData("OkOpening", 0) == 0)
+        {
+            isNotFirst = false;
+        }
+        else
+        {
+            isNotFirst = true;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -181,6 +193,7 @@ public class OpeningManager : MonoBehaviour
                 {
                     backGround.SetActive(false);
                     storys_obj.SetActive(false);
+                    SaveLoadManager.instance.SaveData("OkOpening", 1);
                     isNotFirst = true;
                     isPlayStop = true;
                     gameTitle.SetActive(true);

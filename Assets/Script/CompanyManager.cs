@@ -31,6 +31,8 @@ public class CompanyManager : MonoBehaviour
         moneyManager = FindObjectOfType<MoneyManager>();
         upgradeManager = FindObjectOfType<UpgradeManager>();
         employeeManager = FindObjectOfType<EmployeeManager>();
+        CompanyLevel = SaveLoadManager.instance.LoadData("CompanyLevel", 1);
+        BuildingUpgrade.instance.LoadBuildings(SaveLoadManager.instance.LoadData("CompanyLevel", 1));
     }
 
     private void Update()
@@ -67,6 +69,7 @@ public class CompanyManager : MonoBehaviour
         {
             CompanyLevel++;
             MoneyManager.instance.money -= RequireMoney;
+            SaveLoadManager.instance.SaveData("CompanyLevel", CompanyLevel);
             UpdateRequires();
         }
         else

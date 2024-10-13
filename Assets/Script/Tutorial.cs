@@ -39,8 +39,20 @@ public class Tutorial : MonoBehaviour
             "회사를 업그레이드하기 위해서는 \n각 조건을 충족시켜야 합니다.",
             "설명은 여기까지입니다, \n이제 회사를 운영해 보세요 !",
             ""};
-        DisableOnClickButtons(false);
 
+        if (SaveLoadManager.instance.LoadData("OkTutorial", 0) == 0)
+        {
+            tutoEnd = false;
+        }
+        else
+        {
+            tutoEnd = true;
+        }
+
+        if (!tutoEnd)
+        {
+            DisableOnClickButtons(false);
+        }
     }
 
     private void Update()
@@ -81,6 +93,7 @@ public class Tutorial : MonoBehaviour
             }
 
             tutoEnd = true;
+            SaveLoadManager.instance.SaveData("OkTutorial", 1);
         }
     }
     private void TutorialGuide()
