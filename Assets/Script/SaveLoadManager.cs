@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class SaveLoadManager : MonoBehaviour
 {
@@ -51,5 +52,34 @@ public class SaveLoadManager : MonoBehaviour
     public void AllDateDestory()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    // 직원 리스트를 저장하는 함수
+    public void SaveEmployeeData(List<Employee> allEmployees, List<Employee> getEmployees, List<Employee> isHireEmployees)
+    {
+        // JSON 직렬화
+        string allEmployeesJson = JsonConvert.SerializeObject(allEmployees);
+        string getEmployeesJson = JsonConvert.SerializeObject(getEmployees);
+        string isHireEmployeesJson = JsonConvert.SerializeObject(isHireEmployees);
+
+        // 직렬화된 데이터를 PlayerPrefs에 저장
+        PlayerPrefs.SetString("AllEmployees", allEmployeesJson);
+        PlayerPrefs.SetString("GetEmployees", getEmployeesJson);
+        PlayerPrefs.SetString("IsHireEmployees", isHireEmployeesJson);
+        PlayerPrefs.Save(); // PlayerPrefs 저장
+    }
+
+    // 직원 리스트를 불러오는 함수
+    public void LoadEmployeeData(out List<Employee> allEmployees, out List<Employee> getEmployees, out List<Employee> isHireEmployees)
+    {
+        // JSON 데이터를 PlayerPrefs에서 불러오기
+        string allEmployeesJson = PlayerPrefs.GetString("AllEmployees", "");
+        string getEmployeesJson = PlayerPrefs.GetString("GetEmployees", "");
+        string isHireEmployeesJson = PlayerPrefs.GetString("IsHireEmployees", "");
+
+        // 데이터가 비어 있지 않으면 역직렬화하여 리스트로 변환
+        allEmployees = !string.IsNullOrEmpty(allEmployeesJson) ? JsonConvert.DeserializeObject<List<Employee>>(allEmployeesJson) : new List<Employee>();
+        getEmployees = !string.IsNullOrEmpty(getEmployeesJson) ? JsonConvert.DeserializeObject<List<Employee>>(getEmployeesJson) : new List<Employee>();
+        isHireEmployees = !string.IsNullOrEmpty(isHireEmployeesJson) ? JsonConvert.DeserializeObject<List<Employee>>(isHireEmployeesJson) : new List<Employee>();
     }
 }

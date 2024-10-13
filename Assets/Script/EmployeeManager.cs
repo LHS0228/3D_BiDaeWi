@@ -17,7 +17,14 @@ public class EmployeeManager : MonoBehaviour
 
     private void Awake()
     {
-        Generation_Employee(25);
+        // 저장된 직원 데이터를 불러오기
+        SaveLoadManager.instance.LoadEmployeeData(out AllEmployees, out GetEmployees, out IsHireEmployees);
+
+        // 저장된 데이터가 없을 때만 새로운 직원 생성
+        if (AllEmployees == null || AllEmployees.Count == 0)
+        {
+            Generation_Employee(25);
+        }
     }
 
     private void Generation_Employee(int count)
@@ -27,12 +34,14 @@ public class EmployeeManager : MonoBehaviour
             Employee newEmployee = new Employee($"{i + 1}", false);
             AllEmployees.Add(newEmployee);
         }
+
         // 확인 함수
         foreach (Employee employee in AllEmployees)
         {
             Debug.Log($"Name: {employee.Name}, Race: {employee.Race}, Trait: {employee.Trait}");
         }
     }
+
     public List<Employee> Get_Random_Employees(int count)
     {
         List<Employee> getEmployees = new List<Employee>();
@@ -64,6 +73,9 @@ public class EmployeeManager : MonoBehaviour
                 employee.Hire();
                 IsHireEmployees.Add(employee);
                 Debug.Log($"{employee.Name} 고용");
+
+                // 직원 고용 후 저장
+                SaveLoadManager.instance.SaveEmployeeData(AllEmployees, GetEmployees, IsHireEmployees);
                 return true;
             }
             else
@@ -74,10 +86,8 @@ public class EmployeeManager : MonoBehaviour
         return false;
     }
 
-    // 업그레이드에서 직원을 사용하기 위해 리턴
     public List<Employee> GetHiredEmployee()
     {
         return IsHireEmployees;
     }
-
 }
