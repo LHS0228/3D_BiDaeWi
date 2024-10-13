@@ -46,7 +46,7 @@ public class OpeningManager : MonoBehaviour
             GameStart();
         }
 
-        if (Input.GetKey(KeyCode.Space) && !isNotFirst)
+        if (Input.GetKey(KeyCode.Space) && isNotFirst)
         {
             isPlayStop = true;
             backGround.SetActive(false);

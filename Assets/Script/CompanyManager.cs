@@ -31,7 +31,7 @@ public class CompanyManager : MonoBehaviour
         moneyManager = FindObjectOfType<MoneyManager>();
         upgradeManager = FindObjectOfType<UpgradeManager>();
         employeeManager = FindObjectOfType<EmployeeManager>();
-        CompanyLevel = SaveLoadManager.instance.LoadData("CompanyLevel", 1);
+        CompanyLevel = SaveLoadManager.instance.LoadData("CompanyLevel", 0);
         BuildingUpgrade.instance.LoadBuildings(SaveLoadManager.instance.LoadData("CompanyLevel", 0));
     }
 
@@ -79,7 +79,10 @@ public class CompanyManager : MonoBehaviour
     }
     private void UpdateRequires()
     {
-        BuildingUpgrade.instance.AllBuildingUpgrade(CompanyLevel - 1, false);
+        if (CompanyLevel != 10)
+        {
+            BuildingUpgrade.instance.AllBuildingUpgrade(CompanyLevel - 1, false);
+        }
 
         switch (CompanyLevel)
         {
@@ -133,6 +136,9 @@ public class CompanyManager : MonoBehaviour
                 RequireMoney = 10000 + (50000 * (CompanyLevel - 1));
                 RequireAirconLevel = requirelevel + (10 * (CompanyLevel - 1));
                 RequireComputerLevel = requirelevel + (10 * (CompanyLevel - 1));
+                break;
+            case 10:
+                EndingManager.instance.isEndding = true;
                 break;
         }
     }

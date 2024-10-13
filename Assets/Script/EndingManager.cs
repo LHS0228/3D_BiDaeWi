@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class EndingManager : MonoBehaviour
 {
+    public static EndingManager instance;
+
     //메인[0], 서브(오른날개)[1], 그린(왼팔)[2], 블루(왼다리)[3], 퍼플(오른다리)[4], 레드(왼날개)[5], 브라운(오른팔)[6]
     [SerializeField] private GameObject[] buildings;
     [SerializeField] private GameObject[] robot_parts;
@@ -16,10 +18,22 @@ public class EndingManager : MonoBehaviour
     [SerializeField] private GameObject endding_Picture;
     [SerializeField] private GameObject[] canvers;
 
-    private bool isEndding;
+    public bool isEndding;
     private float setTime;
 
     private int counting;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(instance);
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -83,6 +97,7 @@ public class EndingManager : MonoBehaviour
         switch(setTime)
         {
             case > 43:
+                SaveLoadManager.instance.AllDateDestory();
                 endding_Picture.SetActive(true);
                 endding_Picture.GetComponent<Image>().DOColor(new Color(1, 1, 1, 1), 7);
                 break;
