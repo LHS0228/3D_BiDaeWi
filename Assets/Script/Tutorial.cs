@@ -53,6 +53,16 @@ public class Tutorial : MonoBehaviour
         {
             DisableOnClickButtons(false);
         }
+        else
+        {
+            GameManager.instance.isGameStop = false;
+            guide.SetActive(false);
+            chatObj.SetActive(false);
+            foreach (GameObject blind in Blinds)
+            {
+                blind.SetActive(false);
+            }
+        }
     }
 
     private void Update()
@@ -61,6 +71,7 @@ public class Tutorial : MonoBehaviour
         {
             TutorialOn();
         }
+
     }
 
     void TutorialOn()

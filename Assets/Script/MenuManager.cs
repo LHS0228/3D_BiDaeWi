@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class MenuManager : MonoBehaviour
 
     public void Reset()
     {
-        //변수 초기화 및 씬 첫 게임 로딩으로 변환.
+        SaveLoadManager.instance.AllDateDestory();
+        SceneManager.LoadScene("Start");
     }
 }
