@@ -12,6 +12,10 @@ public class EmployeeManagerUI : MonoBehaviour
     [SerializeField] private Transform EmployeeContentList;
     [SerializeField] private GameObject HirePanel;
     [SerializeField] private Transform RandomEmployee;
+    [SerializeField] private Button[] CheckButton;
+    [SerializeField] private Image[] CheckImage;
+
+    [SerializeField] private Transform CheckParent;
 
     private EmployeeManager employeemanager;
     private SoundManager soundmanager;
@@ -20,6 +24,10 @@ public class EmployeeManagerUI : MonoBehaviour
     {
         soundmanager = FindObjectOfType<SoundManager>();
         HirePanel.SetActive(false);
+        foreach (var Image in CheckImage)
+        {
+            Image.gameObject.SetActive(false);
+        }
     }
     private void Start()
     {
@@ -35,18 +43,16 @@ public class EmployeeManagerUI : MonoBehaviour
     {
 
         int count = Mathf.Min(5, employees.Count);
-        float PrefabHeight = 260f;
+        float PrefabHeight = 190f;
 
         for (int i = 0; i < count; i++)
         {
+            int index = i;
             Employee employee = employees[i];
 
             GameObject Employee_Info_Object = Instantiate(EmployeeInfoPrefab, RandomEmployee);
-
-            Button Hire_Button = Employee_Info_Object.transform.Find("HireButton").GetComponent<Button>();
-
-            Employee LocalEmployee = employee;
-            Hire_Button.onClick.AddListener(() => HireEmployee(LocalEmployee, Hire_Button));
+            Button hirebutton = HirePanel.transform.Find($"CheckButton{i + 1}").GetComponent<Button>();
+            hirebutton.onClick.AddListener(() => HireEmployee(employee, hirebutton, index));
 
             RectTransform rectTransform = Employee_Info_Object.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(-250f, PrefabHeight - (i * 130f));
@@ -86,10 +92,6 @@ public class EmployeeManagerUI : MonoBehaviour
         traitText.text = employee.Trait;
 
         yield return null;
-
-        Button HireEmployeeButton = Hire_Info.transform.Find("HireButton").GetComponent<Button>();
-        HireEmployeeButton.gameObject.SetActive(false);
-        Debug.Log(HireEmployeeButton.gameObject.activeSelf);
     }
 
     public void HireButton()
@@ -105,12 +107,16 @@ public class EmployeeManagerUI : MonoBehaviour
         soundmanager.PlaySFX(3);
 
     }
-    public void HireEmployee(Employee employee, Button hirebutton)
+    public void HireEmployee(Employee employee, Button hirebutton, int index)
     {
         if (employeemanager.HireEmployee(employee))
         {
             StartCoroutine(ShowHireEmployees(employee, hirebutton));
+            StartCoroutine(CheckMark(hirebutton, index));
             hirebutton.gameObject.SetActive(false);
+
+            CheckImage[index].transform.SetParent(CheckParent);
+            CheckImage[index].gameObject.SetActive(true);
             Debug.Log($"{employee.Name} , {employee.Race} , {employee.Trait} 추가");
             soundmanager.PlaySFX(1);
         }
@@ -121,23 +127,42 @@ public class EmployeeManagerUI : MonoBehaviour
 
         Debug.Log($"버튼 상태" + hirebutton.gameObject.activeSelf);
     }
-    public void FireButton()
-    {
-
-    }
 
     // 새로 고침 버튼 
     public void ReButton()
     {
-        // EmployeeListParent의 자식들을 확인한 후 해당 이름을 삭제 후 다시 리스트에 추가 해 표시
         foreach (Transform child in RandomEmployee)
         {
             Destroy(child.gameObject);
         }
 
+        Transform CheckParent = HirePanel.transform.Find("CheckParent");
+        if (CheckParent != null)
+        {
+            for (int i = 0; i < CheckButton.Length; i++)
+            {
+                CheckButton[i].interactable = true;
+                CheckButton[i].gameObject.SetActive(true);
+
+                Transform checkimage = CheckParent.Find($"Check{i + 1}");
+                if (checkimage != null)
+                {
+                    checkimage.SetParent(CheckButton[i].transform);
+                    checkimage.gameObject.SetActive(false);
+                }
+            }
+        }
         List<Employee> RandomEmployees = employeemanager.Get_Random_Employees(5);
         ShowDisplayInfo(RandomEmployees);
         soundmanager.PlaySFX(3);
     }
 
+    public IEnumerator CheckMark(Button button, int index)
+    {
+        Image Check = button.transform.Find("Check").GetComponent<Image>();
+
+        Check.gameObject.SetActive(true);
+        button.interactable = false;
+        yield return null;
+    }
 }
