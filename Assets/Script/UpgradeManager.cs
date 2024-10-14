@@ -175,7 +175,7 @@ public class UpgradeManager : MonoBehaviour
     public float GetAirconMoney()
     {
         // 기본 자동 획득 재화
-        float BaseMoney = airconLevel * (0.5f * airconFisrtConst) + (1000 * (companyManager.CompanyLevel - 1));
+        float BaseMoney = airconLevel * (0.5f * airconFisrtConst) + (1000 * (companyManager.CompanyLevel));
 
         // 고용한 직원 리스트를 가져옴
         List<Employee> HiredEmployee = employeeManager.GetHiredEmployee();
@@ -197,7 +197,7 @@ public class UpgradeManager : MonoBehaviour
             return BaseMoney * (1 + Total_Auto_Bonus);
         }
         // 그게 아니라면 직원 특성을 곱한 값이 아닌 기본 값을 초당 자동 재화로 반환
-        return airconLevel * (0.5f * airconFisrtConst) + (1000 * (companyManager.CompanyLevel - 1));
+        return airconLevel * (0.5f * airconFisrtConst) + (1000 * (companyManager.CompanyLevel));
     }
     // 클릭 당 재화 함수
     public float GetComputerMoney()
