@@ -119,6 +119,7 @@ public class EmployeeManagerUI : MonoBehaviour
             CheckImage[index].gameObject.SetActive(true);
             Debug.Log($"{employee.Name} , {employee.Race} , {employee.Trait} 추가");
             soundmanager.PlaySFX(1);
+            RemoveEmployee(employee);
         }
         else
         {
@@ -159,10 +160,20 @@ public class EmployeeManagerUI : MonoBehaviour
 
     public IEnumerator CheckMark(Button button, int index)
     {
-        Image Check = button.transform.Find("Check").GetComponent<Image>();
+        Image Check = button.transform.Find($"Check{index}").GetComponent<Image>();
 
         Check.gameObject.SetActive(true);
         button.interactable = false;
         yield return null;
+    }
+
+    private void RemoveEmployee(Employee employee)
+    {
+        List<Employee> randomemployees = employeemanager.AllEmployees;
+        if (randomemployees.Contains(employee))
+        {
+            randomemployees.Remove(employee);
+            Debug.Log($"{employee.Name}가 목록에서 제거되었습니다.");
+        }
     }
 }
