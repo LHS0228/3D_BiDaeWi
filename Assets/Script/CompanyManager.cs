@@ -41,7 +41,7 @@ public class CompanyManager : MonoBehaviour
     }
     private void ShowCompanyInfo()
     {
-        CurrentLevel.text = "회사 레벨: " + CompanyLevel;
+        CurrentLevel.text = "현재 회사 레벨: " + CompanyLevel;
         ShowLvCondition.text = $"필요 에어컨 레벨\n{upgradeManager.airconLevel} / {RequireAirconLevel}\n\n"
             + $"필요 컴퓨터 레벨\n{upgradeManager.computerLevel} / {RequireComputerLevel}\n\n"
             + $"고용 직원 수\n{employeeManager.IsHireEmployees.Count} / {RequireHireEmployee}";
