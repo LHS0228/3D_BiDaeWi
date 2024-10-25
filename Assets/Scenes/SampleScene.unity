@@ -10629,6 +10629,7 @@ MonoBehaviour:
   endding_Picture: {fileID: 201498780}
   canvers:
   - {fileID: 5884349046882430915}
+  isEndding: 0
 --- !u!1001 &795821282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11571,7 +11572,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -13961,6 +13962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusicClips:
   - {fileID: 8300000, guid: ae0419a4563bd154c82298092bdc974f, type: 3}
+  - {fileID: 8300000, guid: 19b7d450def3208408083ff399ddb135, type: 3}
   sfxClips:
   - {fileID: 8300000, guid: 6e923a96b64832b4681e9932fd5ab892, type: 3}
   - {fileID: 8300000, guid: 822e0df78671cdd4f89d1d2c4c4c4c62, type: 3}

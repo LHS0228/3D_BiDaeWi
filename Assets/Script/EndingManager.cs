@@ -38,6 +38,11 @@ public class EndingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            isEndding = true;
+        }
+
         if(isEndding)
         {
             setTime += Time.deltaTime;
@@ -88,6 +93,9 @@ public class EndingManager : MonoBehaviour
                 break;
             case > 1:
                 buildings[0].GetComponent<Animator>().enabled = true;
+                break;
+            case > 0.5f:
+                SoundManager.instance.PlayBackgroundMusic(1);
                 break;
         }
     }
